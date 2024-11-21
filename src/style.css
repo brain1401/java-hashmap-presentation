@@ -1,26 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Reveal.js 커스텀 스타일 */
-.reveal pre {
-  @apply text-left;
-}
-
-.reveal code {
-  @apply text-sm;
-}
-
-.reveal table {
-  @apply border-collapse;
-}
-
-.reveal th,
-.reveal td {
-  @apply border border-gray-600 p-2;
-}
-
-/* Mermaid 다이어그램 스타일 */
-.mermaid {
-  @apply my-4;
-}

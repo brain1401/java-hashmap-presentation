@@ -97,12 +97,18 @@ containsValue(value)</code></pre>
 
           <section>
             <h2>해시 함수 동작 원리</h2>
-            <div class="mermaid">
-              graph LR A[Key: 'apple'] -->|Hash Function| B[Hash: 4] C[Key:
-              'love'] -->|Hash Function| D[Hash: 2] E[Key: 'baby'] -->|Hash
-              Function| F[Hash: 7] subgraph HashMap B --> G[Bucket 4: '사과'] D
-              --> H[Bucket 2: '사랑'] F --> I[Bucket 7: '아기'] end
-            </div>
+            <pre class="mermaid">
+              graph LR 
+                A[Key: 'apple'] -->|Hash Function| B[Hash: 4]
+                C[Key: 'love'] -->|Hash Function| D[Hash: 2]
+                E[Key: 'baby'] -->|Hash Function| F[Hash: 7]
+
+                subgraph HashMap
+                B --> G[Bucket 4: '사과']
+                D --> H[Bucket 2: '사랑']
+                F --> I[Bucket 7: '아기']
+                end
+            </pre>
             <ul>
               <li class="fragment">키를 해시 함수로 변환</li>
               <li class="fragment">해시 값으로 저장 위치 결정</li>
@@ -112,25 +118,27 @@ containsValue(value)</code></pre>
 
           <section>
             <h2>해시 충돌 해결</h2>
-            <div class="mermaid">
-              graph TD subgraph Chaining A[Key1: apple] -->|Hash = 4| B[Bucket
-              4] C[Key2: grape] -->|Hash = 4| B B --> D[apple: 사과] D -->
-              E[grape: 포도] end subgraph Open_Addressing F[Key1: apple]
-              -->|Hash = 4| G[Bucket 4] H[Key2: grape] -->|Hash = 4| I[Bucket 5]
-              J[Original Hash = 4]---|Collision, Move to next| I end
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-around;
-                margin-top: 20px;
-              "
-            >
-              <div style="flex: 1">
+            <pre class="mermaid">
+              graph TD
+                subgraph Chaining
+                A[Key1: apple] -->|Hash = 4| B[Bucket 4]
+                C[Key2: grape] -->|Hash = 4| B
+                B --> D[apple: 사과]
+                D --> E[grape: 포도]
+                end
+                            
+                subgraph Open_Addressing
+                F[Key1: apple] -->|Hash = 4| G[Bucket 4]
+                H[Key2: grape] -->|Hash = 4| I[Bucket 5]
+                J[Original Hash = 4]---|Collision, Move to next| I
+                end
+            </pre>
+            <div class="flex justify-around mt-10">
+              <div class="flex-1">
                 <h3>체이닝</h3>
                 <p>같은 버킷에 연결 리스트로 저장</p>
               </div>
-              <div style="flex: 1">
+              <div class="flex-1">
                 <h3>개방 주소법</h3>
                 <p>다음 빈 공간을 찾아 저장</p>
               </div>

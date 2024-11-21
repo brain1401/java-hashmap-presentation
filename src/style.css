@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("/fonts/freesentationVF.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.reveal {
+  font-family: "Freesentation" !important;
+}
+
+pre code {
+  font-family: Consolas !important;
+}

@@ -1,5 +1,5 @@
 import type { UserConfig } from 'vite'
 
 export default {
-  // ...
-} satisfies UserConfig
+  base: "/java-hashmap-presentation/",
+} satisfies UserConfig;

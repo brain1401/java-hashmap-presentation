@@ -2,7 +2,7 @@
 
 자바 HashMap을 이용한 영한 사전 구현에 대한 프레젠테이션 슬라이드입니다.
 
-## 🔗 [프레젠테이션 보기](https://brain1401.github.io/java-hashmap-presentation/)
+[프레젠테이션 보기](https://brain1401.github.io/java-hashmap-presentation/)
 
 ## 📝 프로젝트 소개
 

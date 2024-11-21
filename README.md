@@ -32,12 +32,12 @@ git clone https://github.com/yourusername/java-hashmap-presentation.git
 디렉토리 이동
 cd java-hashmap-presentation
 의존성 설치
-pnpm install
+pnpm install or npm install
 개발 서버 실행
-pnpm dev
+pnpm dev or npm run dev
 프로덕션 빌드
-pnpm build
+pnpm build or npm run build
 프로덕션 빌드 미리보기
-pnpm preview
+pnpm preview or npm run preview
 ```
 

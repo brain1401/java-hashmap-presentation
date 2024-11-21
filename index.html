@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java HashMap Dictionary</title>
+    <style>
+      /* 초기 배경색 설정 */
+      body {
+        background-color: #191919;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* reveal.js가 로드되기 전까지 콘텐츠 숨김 */
+      .reveal {
+        visibility: hidden;
+      }
+
+      /* 로드 완료 후 콘텐츠 표시 */
+      .reveal.ready {
+        visibility: visible;
+      }
+    </style>
+    <script type="module" crossorigin src="/java-hashmap-presentation/assets/index-gR89gXUD.js"></script>
+    <link rel="stylesheet" crossorigin href="/java-hashmap-presentation/assets/index-BjuR2Tvk.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Title Slide -->
+        <section>
+          <h1 class="text-[6rem]">Java HashMap Dictionary</h1>
+          <h3 class="text-[2rem]">해쉬맵을 이용한 영한 사전 코드 과제</h3>
+          <p>20182267 홍태극</p>
+        </section>
+
+        <!-- Code Overview -->
+        <section>
+          <h2>전체 코드 구조</h2>
+          <pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        // 1. HashMap 생성
+        // 2. 기본 데이터 저장
+        // 3. 사용자 입력 처리
+        // 4. 검색 및 결과 출력
+        // 5. 프로그램 종료
+    }
+}</code></pre>
+        </section>
+
+        <!-- Basic Structure -->
+        <section>
+          <section>
+            <h2>기본 클래스 구조</h2>
+            <pre><code class="language-java">import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // 프로그램 코드
+    }
+}</code></pre>
+            <p>java.util.* 임포트로 HashMap과 Scanner 사용 가능</p>
+          </section>
+        </section>
+
+        <!-- HashMap Creation -->
+        <section>
+          <section>
+            <h2>HashMap 생성</h2>
+            <pre><code class="language-java">// 영어 단어와 한글 단어의 쌍을 저장하는 HashMap 컬렉션 생성
+HashMap&lt;String, String&gt; dic = 
+    new HashMap&lt;String, String&gt;();</code></pre>
+            <ul>
+              <li>키: 영어 단어 (String)</li>
+              <li>값: 한글 단어 (String)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>HashMap의 주요 메소드</h2>
+            <pre
+              class="h-[28rem]"
+            ><code class="language-java text-[1.4rem]">// 데이터 추가
+put(key, value)
+
+// 데이터 검색
+get(key)
+
+// 데이터 삭제
+remove(key)
+
+// 키 존재 여부 확인
+containsKey(key)
+
+// 값 존재 여부 확인
+containsValue(value)</code></pre>
+          </section>
+
+          <!-- HashMap Explanation -->
+
+          <section>
+            <h2>HashMap이란?</h2>
+            <ul>
+              <li>키(Key)와 값(Value) 쌍으로 데이터를 저장하는 자료구조</li>
+              <li>해시 함수를 사용하여 데이터 저장 및 검색</li>
+              <li>검색 속도가 매우 빠름 (O(1))</li>
+              <li>순서를 유지하지 않음</li>
+            </ul>
+          </section>
+
+          <!-- 새로운 해시 함수 설명 섹션 추가 -->
+          <section>
+            <h2>해시 함수 (Hash Function)</h2>
+            <ul>
+              <li>
+                임의의 길이의 데이터를 고정된 길이의 데이터로 매핑하는 함수
+              </li>
+              <li>자바에서는 해시코드를 반환함</li>
+              <li>
+                주요 특징
+                <ul>
+                  <li>결정적 (같은 입력 → 항상 같은 출력)</li>
+                  <li>빠른 계산 가능</li>
+                  <li>입력 데이터가 한 글자라도 달라지면 출력이 아예 달라짐</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>해시 함수 예시</h2>
+            <pre class="mermaid flex justify-center">
+              graph LR
+                A["입력: 'hello'"] -->|해시 함수| B["출력: 69609650"]
+                C["입력: 'hello'"] -->|해시 함수| D["출력: 69609650"]
+            </pre>
+            <p class="text-center">같은 입력은 항상 같은 출력을 생성</p>
+
+            <pre class="mermaid flex justify-center">
+              graph LR
+                A["입력: 'hello'"] -->|해시 함수| B["출력: 69609650"]
+                C["입력: 'helle'"] -->|해시 함수| D["출력: 24563423"]
+            </pre>
+            <p class="text-center">한 글자만 달라져도 완전히 다른 출력 생성</p>
+          </section>
+
+          <section>
+            <h2>HashMap의 특징</h2>
+            <ul>
+              <li>
+                키(Key)의 특징
+                <ul>
+                  <li>고유해야 함 (중복 불가)</li>
+                  <li>하나의 Null값은 허용할 수 있지만 권장되지 않음</li>
+                </ul>
+              </li>
+              <li>
+                값(Value)의 특징
+                <ul>
+                  <li>중복 가능</li>
+                  <li>
+                    Null값은 허용할 수 있지만 권장되지 않음
+                    (NullPointerException 발생 위험 증가)
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>HASHMAP의 간략한 동작 원리</h2>
+            <pre class="mermaid flex justify-center">
+            flowchart LR
+              A["Key: 'apple'"] -->|"hashCode()"| B["Hash: 93029210"]
+              C["Key: 'love'"] -->|"hashCode()"| D["Hash: 3327206"]
+              E["Key: 'baby'"] -->|"hashCode()"| F["Hash: 2857203"]
+              
+              B --> |"% 16"| G["버킷[5]: '사과'"]
+              D --> |"% 16"| H["버킷[10]: '사랑'"]
+              F --> |"% 16"| I["버킷[3]: '아기'"]
+          </pre
+            >
+            <ul>
+              <li>키의 hashCode() 메소드로 해시값 생성</li>
+              <li>해시값을 버킷 크기로 나눈 나머지로 저장 위치 결정</li>
+              <li>
+                서로 다른 키가 같은 버킷 인덱스를 가질 경우 해시 충돌 발생
+              </li>
+              <li>기본 버킷 크기는 16, 자동으로 확장</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>해시 충돌 해결</h4>
+            <div class="flex justify-between">
+              <div>
+                <pre
+                  class="mermaid flex justify-center items-center h-[25rem] w-[21rem]"
+                >
+                graph TD
+                subgraph Chaining
+                A["Key1: 'apple'"] -->|"hashCode() % 16"| B["버킷[4]"]
+                B --> D["apple: '사과'"]
+                C["Key2: 'grape'"] -->|"hashCode() % 16"| B
+                D --> E["grape: '포도'"]
+                end
+              </pre
+                >
+                <div class="text-center mt-4">
+                  <h4>체이닝</h4>
+                  <p>같은 버킷에 연결 리스트로 저장</p>
+                </div>
+              </div>
+
+              <!-- 개방 주소법 -->
+              <div>
+                <pre
+                  class="mermaid flex justify-center items-center h-[25rem] w-[21rem]"
+                >
+                graph TD
+                subgraph Open_Addressing
+                F["Key1: 'apple'"] -->|"hashCode() % 16"| G["버킷[4]: apple='사과'"]
+                H["Key2: 'grape'"] -->|"hashCode() % 16"| G
+                G -->|"충돌! 다음 버킷으로"| I["버킷[5]: grape='포도'"]
+                end
+              </pre
+                >
+                <div class="text-center mt-4">
+                  <h4>개방 주소법</h4>
+                  <p>충돌 발생 시 다음 빈 버킷을 찾아 저장</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>HashMap vs 일반 배열</h2>
+            <table>
+              <tr>
+                <th>동작</th>
+                <th>HashMap</th>
+                <th>배열</th>
+              </tr>
+              <tr>
+                <td>검색</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>삽입</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+              </tr>
+              <tr>
+                <td>삭제</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+              </tr>
+            </table>
+          </section>
+        </section>
+        <!-- Data Input -->
+        <section>
+          <section>
+            <h2>기본 데이터 저장</h2>
+            <pre><code class="language-java">// 3 개의 (key, value) 쌍을 dic에 저장
+dic.put("baby", "아기");  // "baby"는 key, "아기"은 value
+dic.put("love", "사랑"); 
+dic.put("apple", "사과");</code></pre>
+          </section>
+          <section>
+            <h3>저장된 데이터 구조</h3>
+            <table>
+              <tr>
+                <th>Key (영어)</th>
+                <th>Value (한글)</th>
+              </tr>
+              <tr>
+                <td>baby</td>
+                <td>아기</td>
+              </tr>
+              <tr>
+                <td>love</td>
+                <td>사랑</td>
+              </tr>
+              <tr>
+                <td>apple</td>
+                <td>사과</td>
+              </tr>
+            </table>
+          </section>
+        </section>
+
+        <!-- User Input Setup -->
+        <section>
+          <section>
+            <h2>사용자 입력 준비</h2>
+            <pre><code class="language-java">// 사용자 입력을 위한 Scanner 객체 생성
+Scanner scanner = new Scanner(System.in);
+
+// 무한 루프 시작
+while(true) {
+    System.out.print("찾고 싶은 단어는?");
+    String eng = scanner.next();</code></pre>
+          </section>
+        </section>
+
+        <!-- Exit Condition -->
+        <section>
+          <section>
+            <h2>종료 조건 처리</h2>
+            <pre><code class="language-java">// "exit" 입력 시 프로그램 종료
+if(eng.equals("exit")) {
+    System.out.println("종료합니다...");
+    break;
+}</code></pre>
+            <p>equals() 메소드로 문자열 비교</p>
+            <ul>
+              <li>Java에서 문자열은 == 연산자 대신 equals()를 사용</li>
+              <li>== 연산자는 객체의 참조를 비교</li>
+              <li>equals()는 문자열의 실제 내용을 비교</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Search Logic -->
+        <section>
+          <section>
+            <h2>검색 및 결과 출력</h2>
+            <pre><code class="language-java">// 해시맵에서 '키' eng의 '값' kor 검색
+String kor = dic.get(eng);
+if(kor == null)
+    System.out.println(eng + "는 없는 단어 입니다.");
+else
+    System.out.println(kor);</code></pre>
+            <ol>
+              <li>get() 메소드로 키 검색</li>
+              <li>결과가 null이면 없는 단어라고 알리는 메세지 출력</li>
+              <li>결과가 있으면 한글 단어 출력</li>
+            </ol>
+          </section>
+        </section>
+
+        <!-- Resource Cleanup -->
+        <section>
+          <h2>자원 정리</h2>
+          <pre><code class="language-java">// Scanner 객체 닫기
+scanner.close();</code></pre>
+          <p>프로그램 종료 전 시스템 자원 정리</p>
+        </section>
+
+        <!-- Complete Code -->
+        <section>
+          <h2>전체 코드</h2>
+          <pre><code class="language-java">import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap&lt;String, String&gt; dic = 
+            new HashMap&lt;String, String&gt;();
+        
+        dic.put("baby", "아기");
+        dic.put("love", "사랑");
+        dic.put("apple", "사과");</code></pre>
+        </section>
+        <section>
+          <pre><code class="language-java">        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.print("찾고 싶은 단어는?");
+            String eng = scanner.next();
+            if(eng.equals("exit")) {
+                System.out.println("종료합니다...");
+                break;
+            }</code></pre>
+        </section>
+        <section>
+          <pre><code class="language-java">            String kor = dic.get(eng);
+            if(kor == null)
+                System.out.println(eng + "는 없 단어 입니다.");
+            else
+                System.out.println(kor);
+        }
+        scanner.close();
+    }
+}</code></pre>
+        </section>
+
+        <!-- Program Flow -->
+        <section>
+          <h2>프로그램 실행 흐름</h2>
+          <ol>
+            <li>프로그램 시작</li>
+            <li>HashMap 생성 및 기본 데이터 저장</li>
+            <li>사용자 입력 대기</li>
+            <li>
+              입력 받은 단어 처리
+              <ul>
+                <li>"exit" → 프로그램 종료</li>
+                <li>그 외 → 사전에서 검색</li>
+              </ul>
+            </li>
+            <li>결과 출력 후 다시 입력 대기</li>
+            <li>종료 시 자원 정리</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

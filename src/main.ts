@@ -15,17 +15,19 @@ const deck = new Reveal({
   overview: true,
   center: true,
   transition: "slide",
-  transitionSpeed: "default",
 });
 
-// Reveal.js 시작
-deck.initialize();
+// Reveal.js 시작 및 준비 완료 처리
+deck.initialize().then(() => {
+  // reveal 컨테이너에 ready 클래스 추가
+  document.querySelector(".reveal")?.classList.add("ready");
 
-// Highlight.js 초기화
-hljs.highlightAll();
+  // Highlight.js 초기화
+  hljs.highlightAll();
 
-// Mermaid 초기화
-mermaid.initialize({
-  startOnLoad: true,
-  theme: "dark",
+  // Mermaid 초기화
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "dark",
+  });
 });

@@ -2,11 +2,10 @@
 
 자바 HashMap을 이용한 영한 사전 구현에 대한 프레젠테이션 슬라이드입니다.
 
-[프레젠테이션 보기](https://brain1401.github.io/java-hashmap-presentation/)
-
 ## 📝 프로젝트 소개
 
 이 프로젝트는 Java의 HashMap을 활용한 간단한 영한 사전 구현을 설명하는 프레젠테이션입니다. HashMap의 기본 개념부터 실제 구현까지 단계별로 설명합니다.
+직접 클론해서 빌드하여 실행하거나 [프레젠테이션 보기](https://brain1401.github.io/java-hashmap-presentation/)를 통해 확인할 수 있습니다.
 
 ## 🛠 기술 스택
 
